@@ -57,7 +57,7 @@ func (c Config) IsXPlaneVersionSet() bool {
 
 func (c Config) IsSceneryPackIncluded(sceneryId int) bool {
 	if _, ok := c.ReleasedSceneryPacksWithVersion[c.XPlaneVersion]; !ok {
-		fmt.Printf("Could not find list of released scenery packs for version %s\n", c.XPlaneVersion)
+		fmt.Printf("Could not find list of released scenery packs for version %s. Please set the version via the config command.\n", c.XPlaneVersion)
 		return false
 	}
 
