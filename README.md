@@ -2,6 +2,10 @@
 
 With this console application you can download airport updates from the X-Plane Gateway directly into your CustomScenery folder.
 
+Download the latest ``xplane-gateway-downloader`` binary and ``config.json`` from the [release](https://github.com/xEtarusx/xplane-gateway-downloader/releases) section to get started. 
+
+Important: The ``config.json`` must be in the same directory as the binary. Do **NOT** edit the ``config.json`` manually. There is a command for everything. 
+
 ## Commands
 ```
 $ xplane-gateway-downloader --help
