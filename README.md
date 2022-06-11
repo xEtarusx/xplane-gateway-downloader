@@ -47,11 +47,11 @@ Run the following commands and replace the placeholder.
 - Set the path to the CustomScenery folder in the x-plane game folder. The path must contain the ending slashes!
   - **Windows:** (use double backslash due to character escaping)
     ```
-    xplane-gateway-downloader config --custom-scenery-folder C:\\path\\to\\X-Plane 11\\Custom Scenery\\
+    xplane-gateway-downloader config --custom-scenery-folder "C:\\path\\to\\X-Plane 11\\Custom Scenery\\"
     ```
   - **Linux:**
     ```
-    xplane-gateway-downloader config --custom-scenery-folder /path/to/Custom Scenery/
+    xplane-gateway-downloader config --custom-scenery-folder "/path/to/Custom Scenery/"
     ```
 
 - Set your X-Plane game version. This will allow the application to not download airports if there is no newer version available and therefore save disk space.
