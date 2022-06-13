@@ -42,6 +42,7 @@ USAGE:
    xplane-gateway-downloader config [command options] [arguments...]
 
 OPTIONS:
+   --config path, -c path                    The path to the config.json (default: "config.json")
    --custom-scenery-folder path, --csf path  The path to CustomScenery folder of x-plane
    --x-plane-version version, -v version     Set the current version of x-plane
 ```
@@ -75,7 +76,8 @@ USAGE:
    xplane-gateway-downloader install [command options] [arguments...]
 
 OPTIONS:
-   --icao ICAO, -i ICAO  Install an airport by ICAO code
+   --config path, -c path  The path to the config.json (default: "config.json")
+   --icao ICAO, -i ICAO    Install an airport by ICAO code
 ```
 
 Example: ``xplane-gateway-downloader install --icao EDDF``
@@ -91,7 +93,7 @@ USAGE:
    xplane-gateway-downloader update [command options] [arguments...]
 
 OPTIONS:
-   --help, -h  show help (default: false)
+   --config path, -c path  The path to the config.json (default: "config.json")
 ```
 
 Example: ``xplane-gateway-downloader update``
@@ -107,7 +109,8 @@ USAGE:
    xplane-gateway-downloader uninstall [command options] [arguments...]
 
 OPTIONS:
-   --icao ICAO, -i ICAO  Uninstall an airport by ICAO code
+   --config path, -c path  The path to the config.json (default: "config.json")
+   --icao ICAO, -i ICAO    Uninstall an airport by ICAO code
 ```
 
 Example: ``xplane-gateway-downloader uninstall --icao EDDF``

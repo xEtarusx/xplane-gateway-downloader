@@ -19,7 +19,7 @@ func ActionUninstall(c *cli.Context) error {
 
 	// Check if airport is not installed locally
 	if !config.GlobalConfig.IsAirportInstalled(icao) {
-		fmt.Printf("Airport %s is not installed", icao)
+		fmt.Printf("%s is currently not installed", icao)
 		return nil
 	}
 
@@ -31,6 +31,8 @@ func ActionUninstall(c *cli.Context) error {
 
 	// delete airport from local config
 	config.GlobalConfig.AirportConfig = config.GlobalConfig.RemoveAirport(icao)
+
+	fmt.Printf("%s was successfully uninstalled\n", icao)
 
 	return nil
 }

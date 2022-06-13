@@ -3,18 +3,12 @@ package main
 import (
 	"github.com/urfave/cli/v2"
 	"github.com/xEtarusx/xplane-gateway-downloader/app"
-	"github.com/xEtarusx/xplane-gateway-downloader/config"
 	"log"
 	"os"
 )
 
 func main() {
-	cfg, err := config.LoadConfig("config.json")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	config.GlobalConfig = cfg
+	action := app.Action{}
 
 	a := &cli.App{
 		Name:        "X-Plane Gateway Downloader",
@@ -23,10 +17,18 @@ func main() {
 		Description: "Update airport sceneries from the X-Plane Gateway",
 		Commands: []*cli.Command{
 			{
-				Name:   "install",
-				Usage:  "Install a new airport scenery pack",
-				Action: app.ActionInstall,
+				Name:  "install",
+				Usage: "Install a new airport scenery pack",
+				Action: func(c *cli.Context) error {
+					return action.Process(c, app.ActionInstall)
+				},
 				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "config",
+						Aliases: []string{"c"},
+						Usage:   "The `path` to the config.json",
+						Value:   "config.json",
+					},
 					&cli.StringFlag{
 						Name:    "icao",
 						Aliases: []string{"i"},
@@ -35,15 +37,33 @@ func main() {
 				},
 			},
 			{
-				Name:   "update",
-				Usage:  "Update all installed airport scenery packs",
-				Action: app.ActionUpdate,
+				Name:  "update",
+				Usage: "Update all installed airport scenery packs",
+				Action: func(c *cli.Context) error {
+					return action.Process(c, app.ActionUpdate)
+				},
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "config",
+						Aliases: []string{"c"},
+						Usage:   "The `path` to the config.json",
+						Value:   "config.json",
+					},
+				},
 			},
 			{
-				Name:   "uninstall",
-				Usage:  "Uninstall an installed airport scenery pack",
-				Action: app.ActionUninstall,
+				Name:  "uninstall",
+				Usage: "Uninstall an installed airport scenery pack",
+				Action: func(c *cli.Context) error {
+					return action.Process(c, app.ActionUninstall)
+				},
 				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "config",
+						Aliases: []string{"c"},
+						Usage:   "The `path` to the config.json",
+						Value:   "config.json",
+					},
 					&cli.StringFlag{
 						Name:    "icao",
 						Aliases: []string{"i"},
@@ -52,10 +72,18 @@ func main() {
 				},
 			},
 			{
-				Name:   "config",
-				Usage:  "Configure the application",
-				Action: app.ActionConfig,
+				Name:  "config",
+				Usage: "Configure the application",
+				Action: func(c *cli.Context) error {
+					return action.Process(c, app.ActionConfig)
+				},
 				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "config",
+						Aliases: []string{"c"},
+						Usage:   "The `path` to the config.json",
+						Value:   "config.json",
+					},
 					&cli.StringFlag{
 						Name:    "custom-scenery-folder",
 						Aliases: []string{"csf"},
@@ -71,12 +99,7 @@ func main() {
 		},
 	}
 
-	err = a.Run(os.Args)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = config.SaveConfig("config.json")
+	err := a.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
 	}
