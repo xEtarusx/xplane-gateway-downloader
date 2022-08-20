@@ -1,116 +1,107 @@
 # X-Plane Gateway Downloader
 
-With this console application you can download airport updates from the X-Plane Gateway directly into your CustomScenery folder.
+With this console application you can download airport updates from the X-Plane Gateway directly 
+into your ``Custom Scenery`` folder.
 
-Download the latest ``xplane-gateway-downloader`` binary and ``config.json`` from the [release](https://github.com/xEtarusx/xplane-gateway-downloader/releases) section to get started. 
+## Table of contents
 
-Important: The ``config.json`` must be in the same directory as the binary. Do **NOT** edit the ``config.json`` manually. There is a command for everything. 
+* [Setup](#setup)
+* [How to use](#how-to-use)
+  + [Install a new airport](#install-a-new-airport)
+  + [Update installed airports](#update-installed-airports)
+  + [Uninstall an airport](#uninstall-an-airport)
 
-## Commands
-```
-$ xplane-gateway-downloader --help
-NAME:
-   X-Plane Gateway Downloader - Download airports from X-Plane Gateway with ease
 
-USAGE:
-   xplane-gateway-downloader [global options] command [command options] [arguments...]
+## Setup
 
-DESCRIPTION:
-   Update airport sceneries from the X-Plane Gateway
+### Step 1:
 
-COMMANDS:
-   install    Install a new airport scenery pack
-   update     Update all installed airport scenery packs
-   uninstall  Uninstall an installed airport scenery pack
-   config     Configure the application
-   help, h    Shows a list of commands or help for one command
+Download the latest version for your operating system:
+* [Windows](https://github.com/xEtarusx/xplane-gateway-downloader/releases/latest/download/xplane-gateway-downloader-windows.zip) 
+* [Mac OS](https://github.com/xEtarusx/xplane-gateway-downloader/releases/latest/download/xplane-gateway-downloader-mac_os.zip)
+* [Linux 32-bit](https://github.com/xEtarusx/xplane-gateway-downloader/releases/latest/download/xplane-gateway-downloader-linux-32bit.zip) 
+* [Linux 64-bit](https://github.com/xEtarusx/xplane-gateway-downloader/releases/latest/download/xplane-gateway-downloader-linux-64bit.zip) 
 
-GLOBAL OPTIONS:
-   --help, -h  show help (default: false)
-```
 
-### Configuration
+### Step 2:
 
-Before you can manage new airports you have to set up the application.
+Extract the downloaded .zip archive.
 
-```
-$ xplane-gateway-downloader config --help
-NAME:
-   xplane-gateway-downloader config - Configure the application
+**Info**: always keep the application and the ``config.json`` in the same directory.
 
-USAGE:
-   xplane-gateway-downloader config [command options] [arguments...]
+**Important**: Do **NOT** edit the ``config.json`` manually. Only use commands to interact with the application.
 
-OPTIONS:
-   --config path, -c path                    The path to the config.json (default: "config.json")
-   --custom-scenery-folder path, --csf path  The path to CustomScenery folder of x-plane
-   --x-plane-version version, -v version     Set the current version of x-plane
-```
+### Step 3:
 
-Run the following commands and replace the placeholder.
+Open a command line terminal in the folder where you extracted the application.
 
-- Set the path to the CustomScenery folder in the x-plane game folder. The path must contain the ending slashes!
-  - **Windows:** (use double backslash due to character escaping)
-    ```
-    xplane-gateway-downloader config --custom-scenery-folder "C:\\path\\to\\X-Plane 11\\Custom Scenery\\"
-    ```
-  - **Linux:**
-    ```
-    xplane-gateway-downloader config --custom-scenery-folder "/path/to/Custom Scenery/"
-    ```
+* Windows:
+  * Shift + Right click -> "Open PowerShell window here"
+* Mac OS:
+  * Finder -> Services -> "New Terminal at Folder"
+* Linux:
+  * you should already know how to do this ;)
 
-- Set your X-Plane game version. This will allow the application to not download airports if there is no newer version available and therefore save disk space.
-    Most of you will be at the newest version which currently is 11.55. If not, change the version in the command below.
-    ```
-    xplane-gateway-downloader config --x-plane-version 11.55
-    ```
+### Step 4:
 
-### Install an airport
+Now you can run the application once to see if everything works correctly
 
-```
-$ xplane-gateway-downloader install --help
-NAME:
-   xplane-gateway-downloader install - Install a new airport scenery pack
+* Windows:
+  * ``.\xplane-gateway-downloader.exe``
+* Mac OS & Linux:
+  * ``./xplane-gateway-downloader``
 
-USAGE:
-   xplane-gateway-downloader install [command options] [arguments...]
+If you followed correctly, you should see the application help page after running the command above.
 
-OPTIONS:
-   --config path, -c path  The path to the config.json (default: "config.json")
-   --icao ICAO, -i ICAO    Install an airport by ICAO code
-```
+### Step 5:
 
-Example: ``xplane-gateway-downloader install --icao EDDF``
+Set your current X-Plane 11 version so the application knows which default airports you currently have.
 
-### Update all installed airports
+**Note**: The commands are for the version 11.55 as an example. If you have a different version you may change it.
 
-```
-$ xplane-gateway-downloader update --help
-NAME:
-   xplane-gateway-downloader update - Update all installed airport scenery packs
+* Windows:
+  * ``.\xplane-gateway-downloader.exe config -v 11.55``
+* Mac OS & Linux:
+  * ``./xplane-gateway-downloader config -v 11.55``
 
-USAGE:
-   xplane-gateway-downloader update [command options] [arguments...]
+### Step 6:
 
-OPTIONS:
-   --config path, -c path  The path to the config.json (default: "config.json")
-```
+Set the path to the CustomScenery folder of X-Plane 11. All airports will be downloaded into this folder.
 
-Example: ``xplane-gateway-downloader update``
+**Note**: Change the path to your "Custom Scenery" folder located in the X-Plane folder as needed.
 
-### Uninstall an installed airport
+* Windows:
+  * ``.\xplane-gateway-downloader.exe config -csf "D:\Programme\Steam\steamapps\common\X-Plane 11\Custom Scenery"``
+* Mac OS & Linux:
+  * ``./xplane-gateway-downloader config -csf "D:\Programme\Steam\steamapps\common\X-Plane 11\Custom Scenery"``
 
-```
-$ xplane-gateway-downloader uninstall --help
-NAME:
-   xplane-gateway-downloader uninstall - Uninstall an installed airport scenery pack
 
-USAGE:
-   xplane-gateway-downloader uninstall [command options] [arguments...]
+## How to use
 
-OPTIONS:
-   --config path, -c path  The path to the config.json (default: "config.json")
-   --icao ICAO, -i ICAO    Uninstall an airport by ICAO code
-```
+### Install a new airport
 
-Example: ``xplane-gateway-downloader uninstall --icao EDDF``
+To install a new airport you need to execute the following command. Replace EDDF with any ICAO code you want to download.
+
+* Windows:
+  * ``.\xplane-gateway-downloader.exe install -i EDDF``
+* Mac OS & Linux:
+  * ``./xplane-gateway-downloader install -i EDDF``
+
+### Update installed airports
+
+This command updates all airports you previously installed with the command above.
+
+* Windows:
+  * ``.\xplane-gateway-downloader.exe update``
+* Mac OS & Linux:
+  * ``./xplane-gateway-downloader update``
+
+### Uninstall an airport
+
+If you would like to remove an airport which you installed before you can run the following command. 
+Replace EDDF with any ICAO code of an airport you want to remove.
+
+* Windows:
+  * ``.\xplane-gateway-downloader.exe uninstall -i EDDF``
+* Mac OS & Linux:
+  * ``./xplane-gateway-downloader uninstall -i EDDF``
