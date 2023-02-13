@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/xEtarusx/xplane-gateway-downloader/types"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 )
@@ -33,7 +33,7 @@ func GetAirportData(icao string) (types.Airport, error) {
 	defer response.Body.Close()
 
 	// Parse the json
-	body, err := ioutil.ReadAll(response.Body)
+	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		return types.Airport{}, err
 	}
@@ -65,7 +65,7 @@ func GetSceneryData(sceneryId int) (types.Scenery, error) {
 	defer response.Body.Close()
 
 	// Parse the json
-	body, err := ioutil.ReadAll(response.Body)
+	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		return types.Scenery{}, err
 	}
@@ -92,7 +92,7 @@ func GetReleaseData() ([]types.Release, error) {
 	defer response.Body.Close()
 
 	// Parse the json
-	body, err := ioutil.ReadAll(response.Body)
+	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +116,7 @@ func GetReleaseSceneryData(release string) ([]int, error) {
 	defer response.Body.Close()
 
 	// Parse the json
-	body, err := ioutil.ReadAll(response.Body)
+	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
 	}

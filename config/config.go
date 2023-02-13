@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/xEtarusx/xplane-gateway-downloader/types"
-	"io/ioutil"
 	"os"
 )
 
@@ -39,7 +38,7 @@ func SaveConfig(file string) error {
 		return err
 	}
 
-	return ioutil.WriteFile(file, content, os.ModePerm)
+	return os.WriteFile(file, content, os.ModePerm)
 }
 
 // IsAirportInstalled Check if an airport is installed with the provided icao code

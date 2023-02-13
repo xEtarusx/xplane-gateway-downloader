@@ -18,7 +18,7 @@ func ActionUpdate(c *cli.Context) error {
 	// Loop through all local airport sceneries
 	for icao, localAirport := range config.GlobalConfig.AirportConfig {
 
-		// Get latest version from gateway for airport
+		// Get the latest version from gateway for airport
 		airport, err := downloader.GetAirportData(icao)
 		if err != nil {
 			return err

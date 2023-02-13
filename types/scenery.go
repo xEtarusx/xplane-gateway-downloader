@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"errors"
-	"io/ioutil"
+	"io"
 	"time"
 )
 
@@ -61,5 +61,5 @@ func readZipFile(zf *zip.File) ([]byte, error) {
 		return nil, err
 	}
 	defer f.Close()
-	return ioutil.ReadAll(f)
+	return io.ReadAll(f)
 }
