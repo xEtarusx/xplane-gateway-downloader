@@ -55,9 +55,9 @@ If you followed correctly, you should see the application help page after runnin
 
 ### Step 5:
 
-Set your current X-Plane 11 version so the application knows which default airports you currently have.
+Set your current X-Plane version so the application knows which default airports you currently have.
 
-**Note**: The commands are for the version 11.55 as an example. If you have a different version you may change it.
+**Note**: The commands are for the version 11.55 as an example. If you have a different version change 11.55 to your version.
 
 * Windows:
   * ``.\xplane-gateway-downloader.exe config -v 11.55``
@@ -66,14 +66,14 @@ Set your current X-Plane 11 version so the application knows which default airpo
 
 ### Step 6:
 
-Set the path to the CustomScenery folder of X-Plane 11. All airports will be downloaded into this folder.
+Set the path to the CustomScenery folder of X-Plane. All airports will be downloaded into this folder.
 
 **Note**: Change the path to your "Custom Scenery" folder located in the X-Plane folder as needed.
 
 * Windows:
-  * ``.\xplane-gateway-downloader.exe config -csf "D:\Programme\Steam\steamapps\common\X-Plane 11\Custom Scenery"``
+  * ``.\xplane-gateway-downloader.exe config -csf "D:\path-to\X-Plane 12\Custom Scenery"``
 * Mac OS & Linux:
-  * ``./xplane-gateway-downloader config -csf "D:\Programme\Steam\steamapps\common\X-Plane 11\Custom Scenery"``
+  * ``./xplane-gateway-downloader config -csf "D:\path-to\X-Plane 12\Custom Scenery"``
 
 
 ## How to use
