@@ -1,6 +1,8 @@
 # X-Plane Gateway Downloader
 
-With this console application you can download airport updates from the X-Plane Gateway directly 
+Don't want to wait for the next X-Plane update for new version of airports?
+
+With this console application you can download airport updates from the X-Plane Gateway (https://gateway.x-plane.com/) directly 
 into your ``Custom Scenery`` folder.
 
 ## Table of contents
@@ -26,8 +28,6 @@ Download the latest version for your operating system:
 ### Step 2:
 
 Extract the downloaded .zip archive.
-
-**Info**: always keep the application and the ``config.json`` in the same directory.
 
 **Important**: Do **NOT** edit the ``config.json`` manually. Only use commands to interact with the application.
 
