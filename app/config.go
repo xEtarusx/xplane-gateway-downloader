@@ -23,6 +23,18 @@ func ActionConfig(c *cli.Context) error {
 	return nil
 }
 
+func ConfigChangePresent(c *cli.Context) bool {
+	if c.String("custom-scenery-folder") != "" {
+		return true
+	}
+
+	if c.String("x-plane-version") != "" {
+		return true
+	}
+
+	return false
+}
+
 func handleCustomSceneryFolder(path string) {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		// path/to/custom-scenery-folder does not exist

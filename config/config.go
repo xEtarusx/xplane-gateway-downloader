@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/xEtarusx/xplane-gateway-downloader/types"
 	"os"
@@ -16,19 +17,42 @@ type Config struct {
 
 var GlobalConfig Config
 
-func LoadConfig(file string) (Config, error) {
+// createEmptyConfig creates an empty GlobalConfig and saves it to file
+func createEmptyConfig(file string) {
+	GlobalConfig = Config{
+		CustomSceneryFolder:             "",
+		XPlaneVersion:                   "",
+		AirportConfig:                   map[string]types.Airport{},
+		ReleasedSceneryPacksWithVersion: map[string][]int{},
+	}
+
+	SaveConfig(file)
+}
+
+// LoadConfig loads the config from config.json if available or creates a new config.json file
+func LoadConfig(file string) error {
+	// If there is no config file in the given location, create a new one
+	if _, err := os.Stat(file); errors.Is(err, os.ErrNotExist) {
+		fmt.Printf("Config file '%s' not found. Creating empty one.\n", file)
+		createEmptyConfig(file)
+		return nil
+	}
+
 	var config Config
 
 	configFile, err := os.Open(file)
 	if err != nil {
-		return Config{}, err
+		return err
 	}
 	defer configFile.Close()
 
 	jsonParser := json.NewDecoder(configFile)
 	err = jsonParser.Decode(&config)
 
-	return config, err
+	// Save config.json content into GlobalConfig
+	GlobalConfig = config
+
+	return err
 }
 
 // SaveConfig Save the config into a file
@@ -39,6 +63,20 @@ func SaveConfig(file string) error {
 	}
 
 	return os.WriteFile(file, content, os.ModePerm)
+}
+
+func (c Config) Valid() error {
+	// Check if custom scenery folder was set
+	if c.CustomSceneryFolder == "" {
+		return errors.New("X-Plane custom scenery folder is not set. Use 'xplane-gateway-downloader config -csf \"D:\\path-to\\X-Plane 12\\Custom Scenery\"' to set the path")
+	}
+
+	// Check if x-plane version was set
+	if c.XPlaneVersion == "" {
+		return errors.New("X-Plane version is not set. Use 'xplane-gateway-downloader config -v XX.XX' to set the version")
+	}
+
+	return nil
 }
 
 // IsAirportInstalled Check if an airport is installed with the provided icao code

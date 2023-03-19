@@ -26,7 +26,7 @@ func ActionUpdate(c *cli.Context) error {
 
 		// Check if the recommendedSceneryId in the local config is the same as from the gateway
 		if airport.RecommendedSceneryId == localAirport.RecommendedSceneryId {
-			fmt.Printf("%s is already up to date\n", airport.ICAO)
+			fmt.Printf("%s is the latest version (from %s)\n", airport.ICAO, localAirport.SceneryApprovedDate.Format("2006-01-02 15:04"))
 			// Skip updating this airport, continue with next one
 			continue
 		}
@@ -55,7 +55,7 @@ func ActionUpdate(c *cli.Context) error {
 			return err
 		}
 
-		fmt.Printf("%s was successfully updated\n", airport.ICAO)
+		fmt.Printf("%s was successfully updated (from %s to %s)\n", airport.ICAO, localAirport.SceneryApprovedDate.Format("2006-01-02 15:04"), scenery.DateApproved.Format("2006-01-02 15:04"))
 
 		// Store the scenery approved date for information purpose in the airport
 		airport.SceneryApprovedDate = scenery.DateApproved
