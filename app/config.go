@@ -54,6 +54,11 @@ func handleXPlaneVersion(version string) {
 		return
 	}
 
+	if len(releases) == 0 {
+		fmt.Println("No releases found on gateway")
+		return
+	}
+
 	for _, release := range releases {
 		if release.Version != version {
 			continue
