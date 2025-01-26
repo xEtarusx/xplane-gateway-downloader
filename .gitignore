@@ -1,4 +1,7 @@
+# IDE
 .idea
+
+# Binaries
+bin/
 *.exe
 xplane-gateway-downloader
-bin/
